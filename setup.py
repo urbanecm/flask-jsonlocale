@@ -14,7 +14,7 @@ setup(
     license='GNU',
     author='Martin Urbanec',
     author_email='martin@urbanec.cz',
-    description='Very short description',
+    description='An extension for Flask allowing users to easily localize their Flask app',
     long_description=__doc__,
     py_modules=['flask_jsonlocale', 'simplejson'],
     zip_safe=False,
