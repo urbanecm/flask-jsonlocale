@@ -16,7 +16,7 @@ class Locales(object):
         app.context_processor(self.messages_to_context)
 
     def get_locale(self):
-        return request.args.get('uselang') or session.get('language') or self.app.config.get('DEFAULT_LANGUAGE')
+        return request.args.get('uselang') or session.get('language') or request.accept_languages.best_match(self.get_locales()) or self.app.config.get('DEFAULT_LANGUAGE')
     
     def get_permanent_locale(self):
         return session.get('language') or self.app.config.get('DEFAULT_LANGUAGE')
