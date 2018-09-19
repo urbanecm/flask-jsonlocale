@@ -16,12 +16,13 @@ setup(
     author_email='martin@urbanec.cz',
     description='An extension for Flask allowing users to easily localize their Flask app',
     long_description=__doc__,
-    py_modules=['flask_jsonlocale', 'simplejson'],
+    py_modules=['flask_jsonlocale'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask'
+        'Flask',
+	'simplejson'
     ],
     classifiers=[
         'Environment :: Web Environment',
