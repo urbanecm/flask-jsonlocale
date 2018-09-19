@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST">
+    <select name="locale" id="locale">
+        {% for l in locales %}
+        <option {% if permanent_locale == l %}selected{% endif %} value="{{l}}">{{l}}</option>
+        {% endfor %}
+    </select><br><br>
+    <input type="submit" value="{{locale['submit']}}">
+</form>
+{% endblock %}
