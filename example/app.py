@@ -38,6 +38,10 @@ locales = Locales(app)
 def index():
     return render_template('index.html')
 
+@app.route('/python')
+def python():
+    return 'This was translated directly in app.py: %s' % locales.get_message('example')
+
 @app.route('/change_language', methods=['GET', 'POST'])
 def change_language():
     if request.method == 'GET':
