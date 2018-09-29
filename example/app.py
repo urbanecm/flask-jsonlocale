@@ -13,17 +13,21 @@
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
+__dir__ = os.path.dirname(__file__)
+
+import sys
+sys.path.append(os.path.join(__dir__, '..'))
+
 import flask
 from flask import redirect, request, jsonify, make_response, render_template, session, url_for
 from flask import Flask
 from flask_jsonlocale import Locales
 import yaml
-import os
 
 app = Flask(__name__)
 
 # Load configuration from YAML file
-__dir__ = os.path.dirname(__file__)
 app.config.update(
     yaml.safe_load(open(os.path.join(__dir__, 'config.yaml'))))
 
