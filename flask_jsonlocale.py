@@ -40,7 +40,7 @@ class Locales(object):
         if language == 'qqx':
             return message_code
         return self._get_messages(language=language).get(message_code,
-            self._get_messages(language=self.app.config.get('DEFAULT_LOCALE')).get(message_code)
+            self._get_messages(language=self.app.config.get('DEFAULT_LANGUAGE')).get(message_code)
         )
     _ = get_message
     
