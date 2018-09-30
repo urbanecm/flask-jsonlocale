@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-JSONLocale',
-    version='1.3',
+    version='1.4',
     url='http://example.com/flask-jsonlocale/',
     license='GNU',
     author='Martin Urbanec',
