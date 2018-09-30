@@ -14,6 +14,7 @@ class Locales(object):
         app.config.setdefault('MESSAGES_DIR', 'messages')
         app.config.setdefault('DEFAULT_LANGUAGE', 'en')
         app.context_processor(self.messages_to_context)
+        app.jinja_env.globals.update(get_message=self.get_message, _=self.get_message)
 
     def get_locale(self):
         return request.args.get('uselang') or session.get('language') or request.accept_languages.best_match(self.get_locales()) or self.app.config.get('DEFAULT_LANGUAGE')
@@ -41,6 +42,7 @@ class Locales(object):
         return self._get_messages(language=language).get(message_code,
             self._get_messages(language=self.app.config.get('DEFAULT_LOCALE')).get(message_code)
         )
+    _ = get_message
     
     def get_locales(self):
         return [x.replace('.json', '') for x in os.listdir(self.app.config.get('MESSAGES_DIR'))]
