@@ -14,7 +14,7 @@ Basic usage
 ^^^^^^^^^^^^^^^^^^
 You need to inicialize the app by doing
 
-.. code-block::
+.. code-block::python
 
      from flask_jsonlocale import Locales
      locales = Locales(app)
@@ -26,13 +26,13 @@ Locale's object method
 
 The library allows you to change user's language. For doing it, you should create some change language interface and when the language should be switched, you should do this:
 
-.. code-block::
+.. code-block::python
 
     >>> locales.set_locale('en')
     
 This store user's new language into session (under "language"). Please do not touch it manually, althrough it is technically possible. You can also fall-back to default language determination by doing this:
 
-.. code-block::
+.. code-block::python
 
     >>> locales.set_locale()
 
@@ -41,28 +41,28 @@ If you want to change your language only temporarily, you can use GET parameter 
 
 When you need to get user's current language (for example to know what to check in your change language interface), you can do this:
 
-.. code-block::
+.. code-block::python
 
     >>> locales.get_locale()
     'en'
 
 It is also possible to get list of supported language codes by doing:
 
-.. code-block::
+.. code-block::python
 
     >>> locales.get_locales()
     ['en', 'cs', 'de']
 
 If you want to get translated message by message code, you can use this:
 
-.. code-block::
+.. code-block::python
 
     >>> locales.get_message('welcome')
     'Vítejte'
 
 This will return the message in current user's language. There's optional parameter language to enforce to get message in that language. 
 
-.. code-block::
+.. code-block::python
 
     >>> locales.get_message('welcome', langauge='en')
     'Welcome'
@@ -74,14 +74,14 @@ Messages are stored in directory specified by MESSAGES_DIR configuration variabl
 
 The format is as follows:
 
-.. code-block::
+.. code-block::json
 {
    "welcome": "Welcome",
    "login": "Login"
 }
 
 
-.. code-block::
+.. code-block::json
 {
    "welcome": "Vítejte",
    "login": "Přihlásit se"
