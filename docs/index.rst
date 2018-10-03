@@ -80,6 +80,7 @@ The format is as follows:
    "login": "Login"
 }
 
+
 .. code-block::
 {
    "welcome": "Vítejte",
