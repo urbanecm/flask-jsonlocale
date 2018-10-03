@@ -7,6 +7,7 @@ Configuration
 ^^^^^^^^^^^^^^^^
 
 There are two configuration options:
+
 * MESSAGES_DIR: path (relative to app.py's location) to messages directory. Defaults to messages. 
 * DEFAULT_LANGUAGE: for language used defaults to en
 
