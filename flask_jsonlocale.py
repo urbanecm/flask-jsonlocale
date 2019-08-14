@@ -36,6 +36,7 @@ class Locales(object):
             res = {}
             for key in default_locales:
                 res[key] = key
+            self._messages["qqx"] = res
             return res
         messages = json.loads(open(os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % language)).read())
         self._messages[language] = messages
