@@ -9,6 +9,7 @@ class Locales(object):
     def __init__(self, app):
         self.app = app
         self.init_app(app)
+        self._messages = {}
     
     def init_app(self, app):
         app.config.setdefault('MESSAGES_DIR', 'messages')
@@ -27,6 +28,8 @@ class Locales(object):
     
     def _get_messages(self, language=None):
         if language is None: language = self.get_locale()
+        if language in self._messages:
+            return self._messages[language]
         language = language.replace('/', '-').replace('\\', '-') # no paths in language
         if language == "qqx":
             default_locales = json.loads(open(os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % self.app.config.get('DEFAULT_LANGUAGE'))).read())
@@ -34,7 +37,9 @@ class Locales(object):
             for key in default_locales:
                 res[key] = key
             return res
-        return json.loads(open(os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % language)).read())
+        messages = json.loads(open(os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % language)).read())
+        self._messages[language] = messages
+        return messages
     
     def get_message(self, message_code, language=None):
         if language is None: language = self.get_locale()
