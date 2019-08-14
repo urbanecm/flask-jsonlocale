@@ -38,8 +38,16 @@ class Locales(object):
                 res[key] = key
             self._messages["qqx"] = res
             return res
-        messages = json.loads(open(os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % language)).read())
-        self._messages[language] = messages
+        path = os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % language)
+        falledback = False
+        if not os.path.isfile(path):
+            falledback = True
+            path = os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % self.app.config.get('DEFAULT_LANGUAGE'))
+            if not os.path.isfile(path):
+                return {}
+        messages = json.loads(open(path).read())
+        if not falledback:
+            self._messages[language] = messages
         return messages
     
     def get_message(self, message_code, language=None):
