@@ -27,6 +27,7 @@ class Locales(object):
     
     def _get_messages(self, language=None):
         if language is None: language = self.get_locale()
+        language = language.replace('/', '-').replace('\\', '-') # no paths in language
         if language == "qqx":
             default_locales = json.loads(open(os.path.join(self.app.config.get('MESSAGES_DIR'), "%s.json" % self.app.config.get('DEFAULT_LANGUAGE'))).read())
             res = {}
