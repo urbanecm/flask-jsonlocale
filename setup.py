@@ -6,6 +6,8 @@ This is the description for that library
 """
 from setuptools import setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setup(
     name='Flask-JSONLocale',
@@ -15,7 +17,7 @@ setup(
     author='Martin Urbanec',
     author_email='martin@urbanec.cz',
     description='An extension for Flask allowing users to easily localize their Flask app',
-    long_description="Lorem ipsum dolor sit amet",
+    long_description=long_description,
     py_modules=['flask_jsonlocale'],
     zip_safe=False,
     include_package_data=True,
