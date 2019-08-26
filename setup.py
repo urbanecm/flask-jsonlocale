@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='Flask-JSONLocale',
-    version='1.7',
+    version='1.8',
     url='http://example.com/flask-jsonlocale/',
     license='GNU',
     author='Martin Urbanec',
