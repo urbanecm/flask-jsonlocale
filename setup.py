@@ -18,6 +18,7 @@ setup(
     author_email='martin@urbanec.cz',
     description='An extension for Flask allowing users to easily localize their Flask app',
     long_description=long_description,
+    long_description_content_type="text/markdown",
     py_modules=['flask_jsonlocale'],
     zip_safe=False,
     include_package_data=True,
