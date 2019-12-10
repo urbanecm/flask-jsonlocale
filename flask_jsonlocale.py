@@ -28,7 +28,7 @@ class Locales(object):
     
     def _get_messages(self, language=None):
         if language is None: language = self.get_locale()
-        if language in self._messages and not app.debug:
+        if language in self._messages and not self.app.debug:
             return self._messages[language]
         language = language.replace('/', '-').replace('\\', '-') # no paths in language
         if language == "qqx":
