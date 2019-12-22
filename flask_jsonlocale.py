@@ -50,13 +50,15 @@ class Locales(object):
             self._messages[language] = messages
         return messages
     
-    def get_message(self, message_code, language=None):
+    def get_message(self, message_code, language=None, **args):
         if language is None: language = self.get_locale()
         if language == 'qqx':
             return message_code
-        return self._get_messages(language=language).get(message_code,
+        message = self._get_messages(language=language).get(message_code,
             self._get_messages(language=self.app.config.get('DEFAULT_LANGUAGE')).get(message_code, "<%s>" % message_code)
         )
+        message = message.format(**args)
+        return message
     _ = get_message
     
     def get_locales(self):
