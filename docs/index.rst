@@ -13,7 +13,7 @@ There are two configuration options:
 
 Basic usage
 ^^^^^^^^^^^^^^^^^^
-You need to inicialize the app by doing
+You need to initialize the app by doing:
 
 .. code-block::python
 
@@ -67,6 +67,14 @@ This will return the message in current user's language. There's optional parame
 
     >>> locales.get_message('welcome', langauge='en')
     'Welcome'
+
+If you have optional replaceable variables in the string, you can also replace them using the get_message method. For example,
+
+.. code-block::python
+
+    # hello is defined as 'hello {name}'
+    >>> locales.get_message('hello',name='user')
+    'hello user'
 
 Storing messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
