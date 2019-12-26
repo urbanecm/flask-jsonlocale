@@ -6,26 +6,26 @@ import simplejson as json
 
 
 class Locales(object):
-    def __init__(self, app):
+    def __init__(self, app, app_dir):
         self.app = app
-        self.init_app(app)
+        self.init_app(app, app_dir)
         self._messages = {}
-    
-    def init_app(self, app):
-        app.config.setdefault('MESSAGES_DIR', 'messages')
+
+    def init_app(self, app, app_dir):
+        app.config.setdefault('MESSAGES_DIR', app_dir+'\messages')
         app.config.setdefault('DEFAULT_LANGUAGE', 'en')
         app.context_processor(self.messages_to_context)
         app.jinja_env.globals.update(get_message=self.get_message, _=self.get_message)
 
     def get_locale(self):
         return request.args.get('uselang') or session.get('language') or request.accept_languages.best_match(self.get_locales()) or self.app.config.get('DEFAULT_LANGUAGE')
-    
+
     def get_permanent_locale(self):
         return session.get('language') or self.app.config.get('DEFAULT_LANGUAGE')
-    
+
     def set_locale(self, language=None):
         session['language'] = language or self.app.config.get('DEFAULT_LANGUAGE')
-    
+
     def _get_messages(self, language=None):
         if language is None: language = self.get_locale()
         if language in self._messages and not self.app.debug:
@@ -49,7 +49,7 @@ class Locales(object):
         if not falledback:
             self._messages[language] = messages
         return messages
-    
+
     def get_message(self, message_code, language=None, **args):
         if language is None: language = self.get_locale()
         if language == 'qqx':
@@ -60,10 +60,10 @@ class Locales(object):
         message = message.format(**args)
         return message
     _ = get_message
-    
+
     def get_locales(self):
         return [x.replace('.json', '') for x in os.listdir(self.app.config.get('MESSAGES_DIR'))]
-    
+
     def messages_to_context(self):
         locales = self._get_messages()
         default_locales = self._get_messages(language=self.app.config.get('DEFAULT_LANGUAGE'))
