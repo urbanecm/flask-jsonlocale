@@ -22,7 +22,7 @@ sys.path.append(os.path.join(__dir__, '..'))
 import flask
 from flask import redirect, request, jsonify, make_response, render_template, session, url_for
 from flask import Flask
-from flask_jsonlocale import Locales
+from flask_jsonlocaleBubblySprout import Locales
 import yaml
 
 app = Flask(__name__)
@@ -31,8 +31,9 @@ app = Flask(__name__)
 app.config.update(
     yaml.safe_load(open(os.path.join(__dir__, 'config.yaml'))))
 
+app_dir = os.path.dirname(os.path.abspath(__file__))
 
-locales = Locales(app)
+locales = Locales(app, app_dir)
 
 @app.route('/')
 def index():
