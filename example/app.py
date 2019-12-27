@@ -22,7 +22,7 @@ sys.path.append(os.path.join(__dir__, '..'))
 import flask
 from flask import redirect, request, jsonify, make_response, render_template, session, url_for
 from flask import Flask
-from flask_jsonlocaleBubblySprout import Locales
+from flask_jsonlocale import Locales
 import yaml
 
 app = Flask(__name__)
