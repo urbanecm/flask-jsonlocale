@@ -7,13 +7,13 @@ import simplejson as json
 
 
 class Locales(object):
-    def __init__(self, app, app_dir):
+    def __init__(self, app):
         self.app = app
-        self.init_app(app, app_dir)
+        self.init_app(app)
         self._messages = {}
 
-    def init_app(self, app, app_dir):
-        app.config.setdefault('MESSAGES_DIR', app_dir+str(Path('/messages')))
+    def init_app(self, app):
+        app.config.setdefault('MESSAGES_DIR', str(Path(os.path.dirname(os.path.abspath('__main__')))))
         app.config.setdefault('DEFAULT_LANGUAGE', 'en')
         app.context_processor(self.messages_to_context)
         app.jinja_env.globals.update(get_message=self.get_message, _=self.get_message)
