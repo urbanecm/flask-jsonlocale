@@ -31,9 +31,8 @@ app = Flask(__name__)
 app.config.update(
     yaml.safe_load(open(os.path.join(__dir__, 'config.yaml'))))
 
-app_dir = os.path.dirname(os.path.abspath(__file__))
 
-locales = Locales(app, app_dir)
+locales = Locales(app)
 
 @app.route('/')
 def index():
