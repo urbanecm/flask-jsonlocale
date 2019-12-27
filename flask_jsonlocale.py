@@ -1,5 +1,6 @@
 from flask import current_app, _app_ctx_stack
 from flask import redirect, request, jsonify, make_response, render_template, session, url_for
+from pathlib import Path
 import os.path
 import os
 import simplejson as json
@@ -12,7 +13,7 @@ class Locales(object):
         self._messages = {}
 
     def init_app(self, app, app_dir):
-        app.config.setdefault('MESSAGES_DIR', app_dir+'\messages')
+        app.config.setdefault('MESSAGES_DIR', app_dir+str(Path('/messages')))
         app.config.setdefault('DEFAULT_LANGUAGE', 'en')
         app.context_processor(self.messages_to_context)
         app.jinja_env.globals.update(get_message=self.get_message, _=self.get_message)
